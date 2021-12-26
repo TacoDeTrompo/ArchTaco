@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-#-------------------------------------------------------------------------
-#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗
-#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝
-#  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗
-#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║
-#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║
-#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝
-#-------------------------------------------------------------------------
+#--------------------------------------------------------------------
+#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗ █████╗  ██████╗ ██████╗ 
+#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██╔══██╗██╔════╝██╔═══██╗
+#  ███████║██████╔╝██║     ███████║   ██║   ███████║██║     ██║   ██║
+#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██╔══██║██║     ██║   ██║
+#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║  ██║╚██████╗╚██████╔╝
+#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  
+#--------------------------------------------------------------------
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 echo "-------------------------------------------------"
 echo "Setting up mirrors for optimal download          "
@@ -18,16 +18,16 @@ setfont ter-v22b
 sed -i 's/^#Para/Para/' /etc/pacman.conf
 pacman -S --noconfirm reflector rsync grub
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-echo -e "-------------------------------------------------------------------------"
-echo -e "   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗"
-echo -e "  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝"
-echo -e "  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗"
-echo -e "  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║"
-echo -e "  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║"
-echo -e "  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝"
-echo -e "-------------------------------------------------------------------------"
+echo -e "--------------------------------------------------------------------"
+echo -e "   █████╗ ██████╗  ██████╗██╗  ██╗████████╗ █████╗  ██████╗ ██████╗ "
+echo -e "  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██╔══██╗██╔════╝██╔═══██╗"
+echo -e "  ███████║██████╔╝██║     ███████║   ██║   ███████║██║     ██║   ██║"
+echo -e "  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██╔══██║██║     ██║   ██║"
+echo -e "  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║  ██║╚██████╗╚██████╔╝"
+echo -e "  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ "
+echo -e "--------------------------------------------------------------------"
 echo -e "-Setting up $iso mirrors for faster downloads"
-echo -e "-------------------------------------------------------------------------"
+echo -e "--------------------------------------------------------------------"
 
 reflector -a 48 -c $iso -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
 mkdir /mnt
@@ -42,7 +42,21 @@ echo "-------------------------------------------------"
 lsblk
 echo "Please enter disk to work on: (example /dev/sda)"
 read DISK
-echo "THIS WILL FORMAT AND DELETE ALL DATA ON THE DISK"
+echo "You can also use a different disk to mount on home"
+echo "This could be useful if you use an SSD with low storage capacity,"
+echo "allowing to use bigger storage drive to use for /home"
+read -p "Do you want to set a different drive for /home? (y/N):" homedisk
+case $homedisk in
+
+y|Y|yes|Yes|YES)
+echo "Please enter a disk to use ad /home mountpoint: (example /dev/sdb)"
+read DISKHOME
+echo "THE SELECTED DISKS WILL BE FORMATED AND ALL THE DATA ON THEM WILL BE DELETED"
+;;
+*)
+echo "THE SELECTED DISK WILL BE FORMATED AND ALL THE DATA ON IT WILL BE DELETED"
+;;
+esac
 read -p "are you sure you want to continue (Y/N):" formatdisk
 case $formatdisk in
 
@@ -67,16 +81,32 @@ fi
 echo -e "\nCreating Filesystems...\n$HR"
 if [[ ${DISK} =~ "nvme" ]]; then
 mkfs.vfat -F32 -n "EFIBOOT" "${DISK}p2"
-mkfs.btrfs -L "ROOT" "${DISK}p3" -f
-mount -t btrfs "${DISK}p3" /mnt
+mkfs.ext4 -L "ROOT" "${DISK}p3" -f
 else
 mkfs.vfat -F32 -n "EFIBOOT" "${DISK}2"
-mkfs.btrfs -L "ROOT" "${DISK}3" -f
-mount -t btrfs "${DISK}3" /mnt
+mkfs.ext4 -L "ROOT" "${DISK}3" -f
 fi
-ls /mnt | xargs btrfs subvolume delete
-btrfs subvolume create /mnt/@
-umount /mnt
+case $homedisk in
+y|Y|yes|Yes|YES)
+echo "--------------------------------------"
+echo -e "\nFormatting Home disk...\n$HR"
+echo "--------------------------------------"
+# disk prep
+sgdisk -Z ${DISKHOME} # zap all on disk
+sgdisk -a 2048 -o ${DISKHOME} # new gpt disk 2048 alignment
+# create partitions
+sgdisk -n 1::-0 --typecode=1:8302 --change-name=1:'HOME' ${DISKHOME} # partition 1 (BIOS Boot Partition)
+# make filesystems
+echo -e "\nCreating Filesystems...\n$HR"
+if [[ ${DISK} =~ "nvme" ]]; then
+mkfs.ext4 -L "HOME" "${DISK}p3" -f
+else
+mkfs.ext4 -L "HOME" "${DISK}3" -f
+fi
+;;
+*)
+;;
+esac
 ;;
 *)
 echo "Rebooting in 3 Seconds ..." && sleep 1
@@ -87,10 +117,18 @@ reboot now
 esac
 
 # mount target
-mount -t btrfs -o subvol=@ -L ROOT /mnt
+mount -t ext4 -L ROOT /mnt
 mkdir /mnt/boot
 mkdir /mnt/boot/efi
 mount -t vfat -L EFIBOOT /mnt/boot/
+case $homedisk in
+y|Y|yes|Yes|YES)
+mkdir /mnt/home
+mount -t ext4 -L HOMR /mnt/homr
+;;
+*)
+;;
+esac
 
 if ! grep -qs '/mnt' /proc/mounts; then
     echo "Drive is not mounted can not continue"
@@ -101,12 +139,12 @@ if ! grep -qs '/mnt' /proc/mounts; then
 fi
 
 echo "--------------------------------------"
-echo "-- Arch Install on Main Drive       --"
+echo "---   Arch Install on Main Drive   ---"
 echo "--------------------------------------"
 pacstrap /mnt base base-devel linux linux-firmware vim nano sudo archlinux-keyring wget libnewt --noconfirm --needed
 genfstab -U /mnt >> /mnt/etc/fstab
 echo "keyserver hkp://keyserver.ubuntu.com" >> /mnt/etc/pacman.d/gnupg/gpg.conf
-cp -R ${SCRIPT_DIR} /mnt/root/ArchTitus
+cp -R ${SCRIPT_DIR} /mnt/root/ArchTaco
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 echo "--------------------------------------"
 echo "--GRUB BIOS Bootloader Install&Check--"

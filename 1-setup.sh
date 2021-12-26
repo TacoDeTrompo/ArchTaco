@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-#-------------------------------------------------------------------------
-#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗
-#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝
-#  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗
-#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║
-#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║
-#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝
-#-------------------------------------------------------------------------
+#--------------------------------------------------------------------
+#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗ █████╗  ██████╗ ██████╗ 
+#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██╔══██╗██╔════╝██╔═══██╗
+#  ███████║██████╔╝██║     ███████║   ██║   ███████║██║     ██║   ██║
+#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██╔══██║██║     ██║   ██║
+#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║  ██║╚██████╗╚██████╔╝
+#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  
+#--------------------------------------------------------------------
 echo "--------------------------------------"
 echo "--          Network Setup           --"
 echo "--------------------------------------"
@@ -34,12 +34,12 @@ echo "       Setup Language to US and set locale       "
 echo "-------------------------------------------------"
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-timedatectl --no-ask-password set-timezone America/Chicago
+timedatectl --no-ask-password set-timezone America/Monterrey
 timedatectl --no-ask-password set-ntp 1
 localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
 
 # Set keymaps
-localectl --no-ask-password set-keymap us
+localectl --no-ask-password set-keymap la-latin1
 
 # Add sudo no password rights
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
@@ -62,144 +62,96 @@ PKGS=(
 'xorg-xkill'
 'xorg-xinit'
 'xterm'
-'plasma-desktop' # KDE Load second
-'alsa-plugins' # audio plugins
-'alsa-utils' # audio utils
-'ark' # compression
-'audiocd-kio' 
-'autoconf' # build
-'automake' # build
+'accountsservice'
+'adobe-source-han-sans-cn-fonts'
+'adobe-source-han-sans-hk-fonts'
+'adobe-source-han-sans-jp-fonts'
+'adobe-source-han-sans-kr-fonts'
+'adobe-source-han-sans-otc-fonts'
+'adobe-source-han-sans-tw-fonts'
 'base'
-'bash-completion'
-'bind'
-'binutils'
-'bison'
-'bluedevil'
 'bluez'
 'bluez-libs'
-'bluez-utils'
-'breeze'
-'breeze-gtk'
-'bridge-utils'
-'btrfs-progs'
-'celluloid' # video players
-'cmatrix'
-'code' # Visual Studio code
-'cronie'
-'cups'
-'dialog'
-'discover'
-'dolphin'
-'dosfstools'
-'dtc'
+'bluez-tools'
+'blues-utils'
+'blueberry'
+'caribou'
+'cinnamon'
+'cinnamon-control-center'
+'cinnamon-menus'
+'cinnamon-screensaver'
+'cinnamon-session'
+'cinnamon-settings-daemon'
+'cinnamon-translations'
+'cjs'
+'dbus-python'
 'efibootmgr' # EFI boot
-'egl-wayland'
-'exfat-utils'
-'extra-cmake-modules'
-'filelight'
-'flex'
-'fuse2'
-'fuse3'
-'fuseiso'
-'gamemode'
+'gnome-backgrounds'
+'gnome-themes-extra'
+'gstreamer'
+'grub'
+'grub-customizer'
 'gcc'
 'gimp' # Photo editing
 'git'
 'gparted' # partition management
 'gptfdisk'
-'grub'
-'grub-customizer'
-'gst-libav'
-'gst-plugins-good'
-'gst-plugins-ugly'
-'gwenview'
-'haveged'
 'htop'
-'iptables-nft'
-'jdk-openjdk' # Java 17
-'kate'
-'kcodecs'
-'kcoreaddons'
-'kdeplasma-addons'
-'kde-gtk-config'
-'kinfocenter'
-'kscreen'
-'kvantum-qt5'
-'kitty'
-'konsole'
-'kscreen'
-'layer-shell-qt'
-'libdvdcss'
-'libnewt'
-'libtool'
+'libcroco'
+'libgnomekbd'
+'libkeybinder3'
+'librsvg'
 'linux'
 'linux-firmware'
 'linux-headers'
-'lsof'
+'lightdm'
+'lightdm-webkit2-greeter'
+'lightdm-webkit-theme-litarvan'
 'lutris'
-'lzop'
-'m4'
 'make'
-'milou'
-'nano'
+'metacity'
+'mpv'
+'muffin'
+'nemo'
+'network-manager-applet'
 'neofetch'
-'networkmanager'
 'ntfs-3g'
-'ntp'
-'okular'
-'openbsd-netcat'
-'openssh'
-'os-prober'
-'oxygen'
-'p7zip'
+'noto-fonts'
+'noto-fonts-emoji'
 'pacman-contrib'
-'patch'
-'picom'
-'pkgconf'
-'plasma-meta'
-'plasma-nm'
-'powerdevil'
-'powerline-fonts'
-'print-manager'
-'pulseaudio'
-'pulseaudio-alsa'
-'pulseaudio-bluetooth'
-'python-notify2'
-'python-psutil'
-'python-pyqt5'
+'pipewire' # audio framework
+'wireplumber'
+'pipewire-pulse'
+'polkit-gnome'
+'python-cairo'
+'python-gobject'
+'python-pam'
+'python-pexpect'
+'python-pillow'
+'python-pyinotify'
+'python-pytz'
+'python-tinycss'
+'python-xapp'
 'python-pip'
-'qemu'
-'rsync'
-'sddm'
-'sddm-kcm'
-'snapper'
-'spectacle'
+'timezonemap'
+'rar'
+'system-config-printer'
 'steam'
+'steam-native-runtime'
 'sudo'
-'swtpm'
-'synergy'
-'systemsettings'
-'terminus-font'
-'traceroute'
-'ufw'
-'unrar'
+'xapp'
+'xed'
+'xreader'
 'unzip'
+'unrar'
 'usbutils'
 'vim'
-'virt-manager'
-'virt-viewer'
 'wget'
-'which'
+'wine'
 'wine-gecko'
 'wine-mono'
 'winetricks'
-'xdg-desktop-portal-kde'
-'xdg-user-dirs'
-'zeroconf-ioslave'
 'zip'
-'zsh'
-'zsh-syntax-highlighting'
-'zsh-autosuggestions'
 )
 
 for PKG in "${PKGS[@]}"; do
@@ -226,7 +178,7 @@ esac
 
 # Graphics Drivers find and install
 if lspci | grep -E "NVIDIA|GeForce"; then
-    pacman -S nvidia --noconfirm --needed
+    pacman -S nvidia nvidia-utils lib32-nvidia-utils --noconfirm --needed
 	nvidia-xconfig
 elif lspci | grep -E "Radeon"; then
     pacman -S xf86-video-amdgpu --noconfirm --needed
@@ -237,14 +189,14 @@ fi
 echo -e "\nDone!\n"
 if ! source install.conf; then
 	read -p "Please enter username:" username
-echo "username=$username" >> ${HOME}/ArchTitus/install.conf
+echo "username=$username" >> ${HOME}/ArchTaco/install.conf
 fi
 if [ $(whoami) = "root"  ];
 then
     useradd -m -G wheel,libvirt -s /bin/bash $username 
 	passwd $username
-	cp -R /root/ArchTitus /home/$username/
-    chown -R $username: /home/$username/ArchTitus
+	cp -R /root/ArchTaco /home/$username/
+    chown -R $username: /home/$username/ArchTaco
 	read -p "Please name your machine:" nameofmachine
 	echo $nameofmachine > /etc/hostname
 else
