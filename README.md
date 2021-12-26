@@ -8,7 +8,10 @@ This README contains the steps I do to install and configure a fully-functional 
 
 ```diff
 - WARNING! -
-This repository is a work in progress, if you run the script at the moment, it is almost guaranteed to fail. Please do not use this script to install Arch Linux if you are not familiarized with the installation process. If you wish to install Arch using a reliable script please check the original project from where this script is forked.
+This repository is a work in progress, if you run the script at the moment, it is almost
+guaranteed to fail. Please do not use this script to install Arch Linux if you are not
+familiarized with the installation process. If you wish to install Arch using a reliable
+script please check the original project from where this script is forked.
 ```
 
 ---
