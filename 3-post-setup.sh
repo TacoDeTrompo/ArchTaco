@@ -32,6 +32,10 @@ echo -e "\nEnabling essential services"
 
 systemctl enable NetworkManager.service
 systemctl enable bluetooth.service
+systemctl enable libvirtd.service
+systemctl enable virtlogd.socket
+virsh net-autostart default
+virsh net-start default
 echo "
 ###############################################################################
 # Cleaning
