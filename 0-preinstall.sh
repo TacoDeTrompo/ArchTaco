@@ -81,10 +81,10 @@ fi
 echo -e "\nCreating Filesystems...\n$HR"
 if [[ ${DISK} =~ "nvme" ]]; then
 mkfs.vfat -F32 -n "EFIBOOT" "${DISK}p2"
-mkfs.ext4 -L "ROOT" "${DISK}p3" -f
+mkfs.ext4 -L "ROOT" "${DISK}p3"
 else
 mkfs.vfat -F32 -n "EFIBOOT" "${DISK}2"
-mkfs.ext4 -L "ROOT" "${DISK}3" -f
+mkfs.ext4 -L "ROOT" "${DISK}3"
 fi
 case $homedisk in
 y|Y|yes|Yes|YES)
@@ -99,9 +99,9 @@ sgdisk -n 1::-0 --typecode=1:8302 --change-name=1:'HOME' ${DISKHOME} # partition
 # make filesystems
 echo -e "\nCreating Filesystems...\n$HR"
 if [[ ${DISK} =~ "nvme" ]]; then
-mkfs.ext4 -L "HOME" "${DISK}p3" -f
+mkfs.ext4 -L "HOME" "${DISK}p3"
 else
-mkfs.ext4 -L "HOME" "${DISK}3" -f
+mkfs.ext4 -L "HOME" "${DISK}3"
 fi
 ;;
 *)
@@ -124,7 +124,7 @@ mount -t vfat -L EFIBOOT /mnt/boot/
 case $homedisk in
 y|Y|yes|Yes|YES)
 mkdir /mnt/home
-mount -t ext4 -L HOMR /mnt/homr
+mount -t ext4 -L HOME /mnt/home
 ;;
 *)
 ;;
