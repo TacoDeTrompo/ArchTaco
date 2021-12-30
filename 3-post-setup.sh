@@ -22,9 +22,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo -e "\nEnabling Login Display Manager"
 systemctl enable lightdm
 echo -e "\nSetup LightDM Greeter"
-sed -i 's/^#greeter-session=/greeter-session=lightdm-webkit2-greeter'
+sed -i 's/^#greeter-session=example-gtk-gnome/greeter-session=lightdm-webkit2-greeter' /etc/lightdm/lightdm.conf
 echo -e "\nSetup LightDM Webkit2 Greeter Theme"
-sed -i 's/^webkit-theme       = antergos/webkit-theme       = litarvan'
+sed -i 's/^webkit-theme       = antergos/webkit-theme       = litarvan' /etc/lightdm/lightdm-webkit2-greeter.conf
 # ------------------------------------------------------------------------
 
 echo -e "\nEnabling essential services"
