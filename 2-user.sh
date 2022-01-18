@@ -21,7 +21,6 @@ cd ~
 PKGS=(
 'brave-bin' # Brave Browser
 'dxvk-bin' # DXVK DirectX to Vulcan
-'gnome-terminal-fedora'
 'papirus-icon-theme'
 'papirus-folders'
 'pamac-aur'
@@ -44,6 +43,8 @@ if [[ ! -d "${HOME}/.themes" ]]; then
 fi
 cp -r Cinnazor/Cinnazor/ .themes
 rm -r Cinnazor
+
+papirus-folders -C violet --theme Papirus-Dark
 
 gsettings set org.cinnamon.theme name "Cinnazor"
 gsettings set org.cinnamon.desktop.interface gtk-theme "Cinnazor"

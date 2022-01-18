@@ -61,7 +61,6 @@ PKGS=(
 'xorg-drivers'
 'xorg-xkill'
 'xorg-xinit'
-'xterm'
 'accountsservice'
 'adobe-source-han-sans-cn-fonts'
 'adobe-source-han-sans-hk-fonts'
@@ -90,6 +89,7 @@ PKGS=(
 'efibootmgr' # EFI boot
 'gnome-backgrounds'
 'gnome-themes-extra'
+'gnome-terminal'
 'gstreamer'
 'grub'
 'grub-customizer'
@@ -117,6 +117,7 @@ PKGS=(
 'mpv'
 'muffin'
 'nemo'
+'nemo-fileroller'
 'network-manager-applet'
 'neofetch'
 'ntfs-3g'
